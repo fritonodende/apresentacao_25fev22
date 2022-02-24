@@ -1,0 +1,657 @@
+---
+title: "Inteligência Artificial Reprodutível"
+subtitle: "Redes Bayesianas<br>"  
+author: 
+  - "Gilson L. Lima"
+date: 'Salvador `r format(Sys.Date(), format = "%d %b %Y")`'
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, cabecalho.css]
+    nature:
+      titleSlideClass: ["left", "middle"]
+      slideNumberFormat: "%current%/%total%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+      navigation:
+        scroll: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#23395b",
+  header_background_auto = FALSE,
+  header_font_google = google_font("helvetica"),
+  text_font_google   = google_font("helvetica", "300", "300i"),
+  code_font_google   = google_font("helvetica")
+)
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+class: header_background
+# <br>
+.left-column[]
+
+.right-column[
+## Sumário
+
+1.  **Introdução**
+
+1.  **Etapas Metodológicas**
+
+1.  **Desenvolvimento**
+
+1.  **Tutorial para criação de pacotes**
+
+1.  **Pacote descritiva**
+
+1.  **Conclusão**
+]
+---
+layout: true
+
+# 1.Introdução
+
+---
+class: header_background
+
+## Contextualização, motivação e abordagem
+
+--
+count: false
+
+- Estudar	a	relação	da	dinâmica	da	pandemia	entre	diferentes	localidades
+
+--
+count: false
+
+- A inteligência artificial, segundo McCarthy (2007), como ciência e engenharia de
+fazer programas de computador capazes de atingir objetivos
+
+--
+count: false
+
+- Classificadores
+
+--
+count: false
+
+- Redes Bayesianas
+
+---
+class: header_background
+
+## Objetivos
+
+--
+count: false
+
+- Estudo dos métodos de Inteligência Artificial baseados em redes bayesianos
+
+--
+count: false
+
+  - Naïve Bayes
+  
+  - Alpha Skew Gaussian Naïve Bayes (ASGNB)
+
+--
+count: false
+
+- Estudo das Linguagens R e C, bem como demais ferramentas
+computacionais necessárias
+
+--
+count: false
+
+  - Tutorial para criação de pacotes
+
+--
+count: false
+
+- Implementação dos métodos em pacotes em Linguagem R
+
+--
+count: false
+
+  - Pacote descritiva
+  
+  - Parâmetros da função densidade de probabilidade da distribuição ASGNB
+
+---
+
+layout: true
+
+# 2.Etapas Metodológicas
+
+---
+
+class: header_background
+
+##Plano de trabalho
+
+--
+count: false
+
+<sub>Etapa | <sub>Set | <sub>Out | <sub>Nov | <sub>Dez | <sub>Jan | <sub>Fev | <sub>Mar | <sub>Abr | <sub>Mai | <sub>Jun | <sub>Jul | <sub>Ago
+----- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: 
+<sub>I. Revisão bibliográfica e estudo referente às redes bayesianos | <sub>X | <sub>X | <sub>X | <sub>X | | | | | | | | 
+<sub>II. Estudo referente às ferramentas computacionais semelhantes disponíveis em Linguagem R | | <sub>X | <sub>X | <sub>X | <sub>X | | | | | | | 
+<sub>III. Estudo referente a plataformas de versionamento Git/Github | | | | <sub>X | <sub>X | | | | | | | 
+<sub>IV. Estudo referente a conexão Linguagem R e Linguagem C | | | <sub>X | <sub>X | <sub>X | <sub>X | | | | | | 
+<sub>V. Implementação inédita dos métodos estudados em Linguagem R | | | | | <sub>X | <sub>X | <sub>X | | | | | 
+<sub>VI. Protótipo da biblioteca de implementação inédita | | | | <sub>X | <sub>X | <sub>X | <sub>X | <sub>X | | | | 
+<sub>VII. Estudo de performance da biblioteca para dados simulados e reais | | | | | | | | <sub>X | <sub>X | <sub>X | | 
+<sub>VIII. Relatório Final e submissão da biblioteca ao CRAN | | | | | | <sub>X | <sub>X | <sub>X | <sub>X | <sub>X | <sub>X | <sub>X 
+
+---
+
+layout: true
+
+# 3.Desenvolvimento
+
+---
+
+class: header_background
+
+## Estratégia
+
+--
+count: false
+
+- Tutorial para Criação de pacotes
+
+--
+count: false
+
+  - Estudo das Linguagens R e C, bem como demais ferramentas computacionais necessárias
+
+--
+count: false
+       - Etapa III. Estudo referente a plataformas de versionamento Git/Github
+   
+--
+count: false
+
+- Pacote descritiva
+
+--
+count: false
+
+  - Estudo dos métodos de Inteligência Artificial baseados em redes bayesianos
+  
+  - Implementação dos métodos em pacotes em Linguagem R
+  
+--
+count: false
+      - I. Revisão bibliográfica e estudo referente às redes bayesianos	
+      - II. Estudo referente às ferramentas computacionais semelhantes disponíveis em Linguagem R
+      - IV. Estudo referente a conexão Linguagem R e Linguagem C	
+      -  V. Implementação inédita dos métodos estudados em Linguagem R
+      - VI. Protótipo da biblioteca de implementação inédita
+      - VII. Estudo de performance da biblioteca para dados simulados e reais	
+  
+---
+
+layout: true
+
+# 4.Tutorial para criação de pacotes
+
+---
+
+class: header_background
+
+## Como e porque
+
+--
+count: false
+
+- Criar pacote
+
+--
+count: false
+
+  - Por que criar
+  pacotes? 
+  
+--
+count: false
+
+- Documentar
+
+--
+count: false
+
+  - Por que documentar?
+
+
+--
+count: false
+    - Vignettes
+  
+
+---
+
+class: header_background
+
+## Como e porque
+
+- Gerenciar dependências
+
+--
+count: false
+  - Por que gerenciar
+  dependências?
+  
+--
+count: false
+   - Isolado
+
+   - Portátil
+
+   - Reprodutível
+
+--
+count: false
+- Controle de versionamento
+
+--
+count: false
+  - Git
+  
+  - Github
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+--
+count: false
+- Iniciar Rstudio
+
+--
+count: false
+- Instalar devtools
+
+```{r eval=FALSE}
+install.packages("devtools")
+
+# o pacote devtools instala ainda os pacotes usethis e roxygen2
+```
+
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+- Criar estrutura mínima do pacote
+
+```{r eval=FALSE}
+usethis::create_package("caminho")
+
+```
+
+<dl>
+<dt>Dessa maneira são gerados automaticamente os arquivos:</dt><br>
+<i><dd>- .gitignore</dd><br>
+<dd>- .Rbuildignore</dd><br>
+<dd>- DESCRIPTION</dd><br>
+<dd>- NAMESPACE</dd>
+</dl></i>
+
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+
+- Adicionar funções
+
+```{r eval=FALSE}
+#cria e abre o arquivo /R/função.R
+
+usethis::use_r("função")
+
+```
+--
+count: false
+- Editar função.R
+
+  - Chamar funções explicitamente
+  
+  - Caso função.R utilize outra função da biblioteca:
+    
+```{r eval=FALSE}
+
+usethis::use_package("outra função") #adiciona Imports: outra função ao aquivo DESCRIPTION
+
+```
+
+--
+count: false
+- Testar função.R
+
+```{r eval=FALSE}
+devtools::load_all() #ou o atalho <ctrl + shift + l>
+
+```
+
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+- Criar estrutura mínima de documentação
+
+--
+count: false
+  - Na barra de menu acessar Code>Insert Roxygen Skelton <Ctrl + Alt + Shift + r> 
+
+--
+count: false
+  - Preencher os campos @
+
+--
+count: false
+- Gerar documentação 
+
+```{r eval=FALSE}
+devtools:::document() #ou o atalho <Ctrl + Shift + d>
+
+```
+<dl>
+<dt>Esse processo vai criar:</dt><br>
+<i><dd>- /man</dd><br>
+<dd>- /man/função.Rd</dd>
+</dl></i>
+
+--
+count: false
+- Checar o pacote em busca de erros
+
+```{r eval=FALSE}
+devtools:::check()
+
+```
+
+---
+class: header_background
+
+## Fluxo de Trabalho
+
+- Adicionar vignette
+
+  - Instalar pacotes knitr e rmarkdown
+
+--
+count: false
+- Criar vignette
+
+```{r eval=FALSE}
+usethis::use_vignette()
+
+```
+<dl>
+<dt>Esse processo vai criar:</dt><br>
+<i><dd>- /vignette</dd><br>
+<dd>- função.Rmd</dd><br></i>
+<dt>E vai ainda editar o arquivo DESCRIPTION adicionando:</dt><br>
+<i><dd>- Suggests: knitr, rmarkdown</dd><br>
+<dd>- VignetteBuilder: knitr, rmarkdown </dd>
+</dl></i>
+
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+Dessa maneira é possível editar o arquivo função.Rmd utilizando os recursos de
+rmarkdown.<br>
+Crtl + Shift + k para visualizar a vignette.
+
+--
+count: false
+Basta agora executar o _install_ e instalar o pacote
+
+```{r eval=FALSE}
+devtools::install(build = TRUE, build_vignettes = TRUE)
+
+#sintaxe para instalar e o pacote, criar o arquivo e gerar a vignette
+
+```
+
+---
+
+class: header_background
+
+## Gerenciamento de dependências
+
+Embora muito importante, o gerenciamento de dependências possui uma rotina simples
+
+--
+count: false
+- Instalar o pacote _renv_
+
+--
+count: false
+- Iniciá-lo
+
+```{r eval=FALSE}
+renv::init() #reconhece as depedência utilizadas e cria o aruivo renv.lock
+
+```
+
+--
+count: false
+- Capturar o estado atual das dependências
+
+```{r eval=FALSE}
+renv::snapshot() #reconhece as depedência em uso e atualiza o aruivo renv.lock
+
+```
+
+--
+count: false
+- Carrega o estado das dependências gravado no arquivo renv.lock
+
+```{r eval=FALSE}
+renv::load() #reconhece as depedência em uso e atualiza o aruivo renv.lock
+
+```
+
+---
+
+class: header_background
+
+## Controle de versionamento Git + Github
+
+--
+count: false
+- Configurar Git _(esse procedimento é feito uma única vez)_
+
+```{r eval=FALSE}
+
+usethis::use_git_config(user.name = ”nome”, user.email = ”email”)
+usethis::create_github_token() #logar navegador na conta do Github para copiar token
+
+```
+
+--
+count: false
+- Editar arquivo .Renviron para incluir o token obtido anteriormente
+
+```{r eval=FALSE}
+
+usethis::edit_r_environ()
+# inserir no arquivo a linha GITHUB_PAT = “SEU TOKEN” e reiniciar o R
+
+```
+
+--
+count: false
+- Testar configuração
+
+```{r eval=FALSE}
+
+usethis::git_sitrep()
+
+```
+
+---
+
+class: header_background
+
+## Controle de versionamento Git + Github
+
+- Inicializar repositório
+
+```{r eval=FALSE}
+
+usethis::use_git("Primeiro commit") #Inicia repositório e já realiza o commit inicial
+
+```
+
+--
+count: false
+- Enviar para o Github
+
+```{r eval=FALSE}
+
+usethis::use_github()
+
+```
+
+--
+count: false
+- Para clonar um pacote / projeto do Github
+> <sub>Na barra de menu:
+>
+> <sub>File>New Project>Verion Control>Git
+>
+> <sub>Então é só preencher as caixas de diálogo
+
+
+---
+layout: true
+
+# 5.Pacote descritiva
+
+---
+class: header_background
+
+## Breve análise descritiva
+
+--
+count: false
+- Desenvolvido inicialmente como um protótipo capaz de fazer
+uma análise descritiva de um conjunto de dados sob uma ótica condicional
+
+--
+count: false
+- Possui as funções:
+
+--
+count: false
+  - descritiva(), que retorna uma análise descritiva com 14 observações acerca de um conjunto de dados, além de seus boxplots
+
+--
+count: false
+  - dens.descritiva(), que retorna histograma e curva da função densidade de probabilidade de um conjunto de dados
+
+--
+count: false
+  - disp.descritiva(), que retorna gráficos de dispersão de um conjunto de dados
+
+--
+count: false
+  - freq.descritiva, que ao analisar variáveis qualitativas retorna gráficos de barra com suas frequencias e tabelas de frequência absoluta e relativa
+
+--
+count: false
+  - asg.est(), que analisa um conjunto de dados, plota seu histograma e curva de densidade e retorna os valores mi, sigma e alpha da função de densidade da distribuição Alpha Skew Naïve Bayes
+
+---
+class: header_background
+
+## Breve análise descritiva
+
+Há outros pacotes e funções em R capazes de fazer o mesmo tipo de análise descritiva, desde mais simples como a própria função summary() até mais sofisticados, como o pacote psych, que também é capaz de fazer uma análise descritiva sob uma perspectiva condicional. Mas aparentemente nenhum deles tem um auxílio gráfico intuitivo
+
+```{r eval=FALSE}
+#conjunto de dados iris, condicional iris$species
+psych::describeBy(iris,iris$Species) 
+
+#mesma saída, mas com boxplots
+descritiva::descritiva(iris, "Species", c("Petal.Length", "Sepal.Length"), hor = TRUE, dg = TRUE) 
+
+```
+---
+class: header_background
+
+## Alpha Skew Gaussian Naïve Bayes (ASGNB)
+
+Já no que se refere a um pacote capaz de estimar os parâmetros
+da função densidade de probabilidade de uma variável que segue
+distribuição ASGNB, aparentemente, não há referências no CRAN. O que sugere que
+ainda não há nesse repositório um pacote onde esse classificador foi implementado.
+Tal situação pode ser vista como uma oportunidade. Segue exemplo de aplicação.
+
+```{r eval=FALSE}
+
+descritiva::asg.est(iris, "Sepal.Length", "Species", "setosa")
+
+
+```
+
+
+---
+layout: true
+
+# 6.Conclusão
+
+---
+class: header_background
+
+##Observações finais
+
+Dessa maneira, uma abordagem Bayesiana sobre	a	relação	da	dinâmica
+da	pandemia	entre	diferentes	localidades faz muito sentido quando se tenta responder a pergunta
+_A Bahia está sob risco de um surto dado que o Amazonas vive um pico de infecções?_ Logo, metódos de classificação capazes
+de lidar com dados assimétricos ou com mais de uma moda são uma ferramenta importante em um mundo que exige decisões cada vez mais rápidas e acertadas, onde um volume cada vez maior de informações é produzido e a capacidade computacional não para de crescer.
+
+---
+layout: false
+class: center, middle
+
+# Grato pela atenção!
+
+Contato via gilsonll.contato@gmail.com
+
+Slides created via the R packages:
+
+[**xaringan**](https://github.com/yihui/xaringan)<br>
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).

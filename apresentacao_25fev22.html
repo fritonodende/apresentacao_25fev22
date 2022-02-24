@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inteligência Artificial Reprodutível</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Gilson L. Lima" />
+    <script src="apresentacao_25fev22_files/header-attrs/header-attrs.js"></script>
+    <link href="apresentacao_25fev22_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="apresentacao_25fev22_files/tile-view/tile-view.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="cabecalho.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, middle, title-slide
+
+# Inteligência Artificial Reprodutível
+## Redes Bayesianas<br>
+### Gilson L. Lima
+### Salvador 24 Feb 2022
+
+---
+
+
+
+
+
+
+
+class: header_background
+# &lt;br&gt;
+.left-column[]
+
+.right-column[
+## Sumário
+
+1.  **Introdução**
+
+1.  **Etapas Metodológicas**
+
+1.  **Desenvolvimento**
+
+1.  **Tutorial para criação de pacotes**
+
+1.  **Pacote descritiva**
+
+1.  **Conclusão**
+]
+---
+layout: true
+
+# 1.Introdução
+
+---
+class: header_background
+
+## Contextualização, motivação e abordagem
+
+--
+count: false
+
+- Estudar	a	relação	da	dinâmica	da	pandemia	entre	diferentes	localidades
+
+--
+count: false
+
+- A inteligência artificial, segundo McCarthy (2007), como ciência e engenharia de
+fazer programas de computador capazes de atingir objetivos
+
+--
+count: false
+
+- Classificadores
+
+--
+count: false
+
+- Redes Bayesianas
+
+---
+class: header_background
+
+## Objetivos
+
+--
+count: false
+
+- Estudo dos métodos de Inteligência Artificial baseados em redes bayesianos
+
+--
+count: false
+
+  - Naïve Bayes
+  
+  - Alpha Skew Gaussian Naïve Bayes (ASGNB)
+
+--
+count: false
+
+- Estudo das Linguagens R e C, bem como demais ferramentas
+computacionais necessárias
+
+--
+count: false
+
+  - Tutorial para criação de pacotes
+
+--
+count: false
+
+- Implementação dos métodos em pacotes em Linguagem R
+
+--
+count: false
+
+  - Pacote descritiva
+  
+  - Parâmetros da função densidade de probabilidade da distribuição ASGNB
+
+---
+
+layout: true
+
+# 2.Etapas Metodológicas
+
+---
+
+class: header_background
+
+##Plano de trabalho
+
+--
+count: false
+
+&lt;sub&gt;Etapa | &lt;sub&gt;Set | &lt;sub&gt;Out | &lt;sub&gt;Nov | &lt;sub&gt;Dez | &lt;sub&gt;Jan | &lt;sub&gt;Fev | &lt;sub&gt;Mar | &lt;sub&gt;Abr | &lt;sub&gt;Mai | &lt;sub&gt;Jun | &lt;sub&gt;Jul | &lt;sub&gt;Ago
+----- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: 
+&lt;sub&gt;I. Revisão bibliográfica e estudo referente às redes bayesianos | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | | | | | | | | 
+&lt;sub&gt;II. Estudo referente às ferramentas computacionais semelhantes disponíveis em Linguagem R | | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | | | | | | | 
+&lt;sub&gt;III. Estudo referente a plataformas de versionamento Git/Github | | | | &lt;sub&gt;X | &lt;sub&gt;X | | | | | | | 
+&lt;sub&gt;IV. Estudo referente a conexão Linguagem R e Linguagem C | | | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | | | | | | 
+&lt;sub&gt;V. Implementação inédita dos métodos estudados em Linguagem R | | | | | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | | | | | 
+&lt;sub&gt;VI. Protótipo da biblioteca de implementação inédita | | | | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | | | | 
+&lt;sub&gt;VII. Estudo de performance da biblioteca para dados simulados e reais | | | | | | | | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | | 
+&lt;sub&gt;VIII. Relatório Final e submissão da biblioteca ao CRAN | | | | | | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X | &lt;sub&gt;X 
+
+---
+
+layout: true
+
+# 3.Desenvolvimento
+
+---
+
+class: header_background
+
+## Estratégia
+
+--
+count: false
+
+- Tutorial para Criação de pacotes
+
+--
+count: false
+
+  - Estudo das Linguagens R e C, bem como demais ferramentas computacionais necessárias
+
+--
+count: false
+       - Etapa III. Estudo referente a plataformas de versionamento Git/Github
+   
+--
+count: false
+
+- Pacote descritiva
+
+--
+count: false
+
+  - Estudo dos métodos de Inteligência Artificial baseados em redes bayesianos
+  
+  - Implementação dos métodos em pacotes em Linguagem R
+  
+--
+count: false
+      - I. Revisão bibliográfica e estudo referente às redes bayesianos	
+      - II. Estudo referente às ferramentas computacionais semelhantes disponíveis em Linguagem R
+      - IV. Estudo referente a conexão Linguagem R e Linguagem C	
+      -  V. Implementação inédita dos métodos estudados em Linguagem R
+      - VI. Protótipo da biblioteca de implementação inédita
+      - VII. Estudo de performance da biblioteca para dados simulados e reais	
+  
+---
+
+layout: true
+
+# 4.Tutorial para criação de pacotes
+
+---
+
+class: header_background
+
+## Como e porque
+
+--
+count: false
+
+- Criar pacote
+
+--
+count: false
+
+  - Por que criar
+  pacotes? 
+  
+--
+count: false
+
+- Documentar
+
+--
+count: false
+
+  - Por que documentar?
+
+
+--
+count: false
+    - Vignettes
+  
+
+---
+
+class: header_background
+
+## Como e porque
+
+- Gerenciar dependências
+
+--
+count: false
+  - Por que gerenciar
+  dependências?
+  
+--
+count: false
+   - Isolado
+
+   - Portátil
+
+   - Reprodutível
+
+--
+count: false
+- Controle de versionamento
+
+--
+count: false
+  - Git
+  
+  - Github
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+--
+count: false
+- Iniciar Rstudio
+
+--
+count: false
+- Instalar devtools
+
+
+```r
+install.packages("devtools")
+
+# o pacote devtools instala ainda os pacotes usethis e roxygen2
+```
+
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+- Criar estrutura mínima do pacote
+
+
+```r
+usethis::create_package("caminho")
+```
+
+&lt;dl&gt;
+&lt;dt&gt;Dessa maneira são gerados automaticamente os arquivos:&lt;/dt&gt;&lt;br&gt;
+&lt;i&gt;&lt;dd&gt;- .gitignore&lt;/dd&gt;&lt;br&gt;
+&lt;dd&gt;- .Rbuildignore&lt;/dd&gt;&lt;br&gt;
+&lt;dd&gt;- DESCRIPTION&lt;/dd&gt;&lt;br&gt;
+&lt;dd&gt;- NAMESPACE&lt;/dd&gt;
+&lt;/dl&gt;&lt;/i&gt;
+
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+
+- Adicionar funções
+
+
+```r
+#cria e abre o arquivo /R/função.R
+
+usethis::use_r("função")
+```
+--
+count: false
+- Editar função.R
+
+  - Chamar funções explicitamente
+  
+  - Caso função.R utilize outra função da biblioteca:
+    
+
+```r
+usethis::use_package("outra função") #adiciona Imports: outra função ao aquivo DESCRIPTION
+```
+
+--
+count: false
+- Testar função.R
+
+
+```r
+devtools::load_all() #ou o atalho &lt;ctrl + shift + l&gt;
+```
+
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+- Criar estrutura mínima de documentação
+
+--
+count: false
+  - Na barra de menu acessar Code&gt;Insert Roxygen Skelton &lt;Ctrl + Alt + Shift + r&gt; 
+
+--
+count: false
+  - Preencher os campos @
+
+--
+count: false
+- Gerar documentação 
+
+
+```r
+devtools:::document() #ou o atalho &lt;Ctrl + Shift + d&gt;
+```
+&lt;dl&gt;
+&lt;dt&gt;Esse processo vai criar:&lt;/dt&gt;&lt;br&gt;
+&lt;i&gt;&lt;dd&gt;- /man&lt;/dd&gt;&lt;br&gt;
+&lt;dd&gt;- /man/função.Rd&lt;/dd&gt;
+&lt;/dl&gt;&lt;/i&gt;
+
+--
+count: false
+- Checar o pacote em busca de erros
+
+
+```r
+devtools:::check()
+```
+
+---
+class: header_background
+
+## Fluxo de Trabalho
+
+- Adicionar vignette
+
+  - Instalar pacotes knitr e rmarkdown
+
+--
+count: false
+- Criar vignette
+
+
+```r
+usethis::use_vignette()
+```
+&lt;dl&gt;
+&lt;dt&gt;Esse processo vai criar:&lt;/dt&gt;&lt;br&gt;
+&lt;i&gt;&lt;dd&gt;- /vignette&lt;/dd&gt;&lt;br&gt;
+&lt;dd&gt;- função.Rmd&lt;/dd&gt;&lt;br&gt;&lt;/i&gt;
+&lt;dt&gt;E vai ainda editar o arquivo DESCRIPTION adicionando:&lt;/dt&gt;&lt;br&gt;
+&lt;i&gt;&lt;dd&gt;- Suggests: knitr, rmarkdown&lt;/dd&gt;&lt;br&gt;
+&lt;dd&gt;- VignetteBuilder: knitr, rmarkdown &lt;/dd&gt;
+&lt;/dl&gt;&lt;/i&gt;
+
+---
+
+class: header_background
+
+## Fluxo de Trabalho
+
+Dessa maneira é possível editar o arquivo função.Rmd utilizando os recursos de
+rmarkdown.&lt;br&gt;
+Crtl + Shift + k para visualizar a vignette.
+
+--
+count: false
+Basta agora executar o _install_ e instalar o pacote
+
+
+```r
+devtools::install(build = TRUE, build_vignettes = TRUE)
+
+#sintaxe para instalar e o pacote, criar o arquivo e gerar a vignette
+```
+
+---
+
+class: header_background
+
+## Gerenciamento de dependências
+
+Embora muito importante, o gerenciamento de dependências possui uma rotina simples
+
+--
+count: false
+- Instalar o pacote _renv_
+
+--
+count: false
+- Iniciá-lo
+
+
+```r
+renv::init() #reconhece as depedência utilizadas e cria o aruivo renv.lock
+```
+
+--
+count: false
+- Capturar o estado atual das dependências
+
+
+```r
+renv::snapshot() #reconhece as depedência em uso e atualiza o aruivo renv.lock
+```
+
+--
+count: false
+- Carrega o estado das dependências gravado no arquivo renv.lock
+
+
+```r
+renv::load() #reconhece as depedência em uso e atualiza o aruivo renv.lock
+```
+
+---
+
+class: header_background
+
+## Controle de versionamento Git + Github
+
+--
+count: false
+- Configurar Git _(esse procedimento é feito uma única vez)_
+
+
+```r
+usethis::use_git_config(user.name = ”nome”, user.email = ”email”)
+usethis::create_github_token() #logar navegador na conta do Github para copiar token
+```
+
+--
+count: false
+- Editar arquivo .Renviron para incluir o token obtido anteriormente
+
+
+```r
+usethis::edit_r_environ()
+# inserir no arquivo a linha GITHUB_PAT = “SEU TOKEN” e reiniciar o R
+```
+
+--
+count: false
+- Testar configuração
+
+
+```r
+usethis::git_sitrep()
+```
+
+---
+
+class: header_background
+
+## Controle de versionamento Git + Github
+
+- Inicializar repositório
+
+
+```r
+usethis::use_git("Primeiro commit") #Inicia repositório e já realiza o commit inicial
+```
+
+--
+count: false
+- Enviar para o Github
+
+
+```r
+usethis::use_github()
+```
+
+--
+count: false
+- Para clonar um pacote / projeto do Github
+&gt; &lt;sub&gt;Na barra de menu:
+&gt;
+&gt; &lt;sub&gt;File&gt;New Project&gt;Verion Control&gt;Git
+&gt;
+&gt; &lt;sub&gt;Então é só preencher as caixas de diálogo
+
+
+---
+layout: true
+
+# 5.Pacote descritiva
+
+---
+class: header_background
+
+## Breve análise descritiva
+
+--
+count: false
+- Desenvolvido inicialmente como um protótipo capaz de fazer
+uma análise descritiva de um conjunto de dados sob uma ótica condicional
+
+--
+count: false
+- Possui as funções:
+
+--
+count: false
+  - descritiva(), que retorna uma análise descritiva com 14 observações acerca de um conjunto de dados, além de seus boxplots
+
+--
+count: false
+  - dens.descritiva(), que retorna histograma e curva da função densidade de probabilidade de um conjunto de dados
+
+--
+count: false
+  - disp.descritiva(), que retorna gráficos de dispersão de um conjunto de dados
+
+--
+count: false
+  - freq.descritiva, que ao analisar variáveis qualitativas retorna gráficos de barra com suas frequencias e tabelas de frequência absoluta e relativa
+
+--
+count: false
+  - asg.est(), que analisa um conjunto de dados, plota seu histograma e curva de densidade e retorna os valores mi, sigma e alpha da função de densidade da distribuição Alpha Skew Naïve Bayes
+
+---
+class: header_background
+
+## Breve análise descritiva
+
+Há outros pacotes e funções em R capazes de fazer o mesmo tipo de análise descritiva, desde mais simples como a própria função summary() até mais sofisticados, como o pacote psych, que também é capaz de fazer uma análise descritiva sob uma perspectiva condicional. Mas aparentemente nenhum deles tem um auxílio gráfico intuitivo
+
+
+```r
+#conjunto de dados iris, condicional iris$species
+psych::describeBy(iris,iris$Species) 
+
+#mesma saída, mas com boxplots
+descritiva::descritiva(iris, "Species", c("Petal.Length", "Sepal.Length"), hor = TRUE, dg = TRUE) 
+```
+---
+class: header_background
+
+## Alpha Skew Gaussian Naïve Bayes (ASGNB)
+
+Já no que se refere a um pacote capaz de estimar os parâmetros
+da função densidade de probabilidade de uma variável que segue
+distribuição ASGNB, aparentemente, não há referências no CRAN. O que sugere que
+ainda não há nesse repositório um pacote onde esse classificador foi implementado.
+Tal situação pode ser vista como uma oportunidade. Segue exemplo de aplicação.
+
+
+```r
+descritiva::asg.est(iris, "Sepal.Length", "Species", "setosa")
+```
+
+
+---
+layout: true
+
+# 6.Conclusão
+
+---
+class: header_background
+
+##Observações finais
+
+Dessa maneira, uma abordagem Bayesiana sobre	a	relação	da	dinâmica
+da	pandemia	entre	diferentes	localidades faz muito sentido quando se tenta responder a pergunta
+_A Bahia está sob risco de um surto dado que o Amazonas vive um pico de infecções?_ Logo, metódos de classificação capazes
+de lidar com dados assimétricos ou com mais de uma moda são uma ferramenta importante em um mundo que exige decisões cada vez mais rápidas e acertadas, onde um volume cada vez maior de informações é produzido e a capacidade computacional não para de crescer.
+
+---
+layout: false
+class: center, middle
+
+# Grato pela atenção!
+
+Contato via gilsonll.contato@gmail.com
+
+Slides created via the R packages:
+
+[**xaringan**](https://github.com/yihui/xaringan)&lt;br&gt;
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%/%total%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
