@@ -587,7 +587,7 @@ devtools::install_github("caminho repositório", build_vignettes = TRUE) # Insta
 --
 count:false
 
-- Sobre desenvolvimento colaborativo utilizando Gibhub [clique aqui](https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#51)
+- Sobre desenvolvimento colaborativo utilizando Github [clique aqui](https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#51)
 
 ---
 
