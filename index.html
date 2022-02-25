@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Tutorial para criação de pacotes no RStudio</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Gilson L. Lima" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="index_files/tile-view/tile-view.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="cabecalho.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, title-slide
+
+# Tutorial para criação de pacotes no RStudio
+## Do zero ao Github<br>
+### Gilson L. Lima
+### Salvador 25 Feb 2022
+
+---
+
+
+class: right, middle
+
+
+
+
+
+##“How many bricks would it take to make that nose?”&lt;br&gt;
+_Dagny Holm, designer-chefe de modelos do Grupo LEGO até 1986_
+
+---
+
+class: header_background
+# &lt;br&gt;
+.left-column[]
+
+.right-column[
+## Sumário
+
+1.  **Introdução**
+
+1.  **Tutorial**
+
+1.  **Conclusão**
+
+1.  **Referências**
+]
+
+---
+
+layout: true
+
+# 1.Introdução
+
+---
+
+class: header_background
+
+## Contextualização, motivação e abordagem
+
+--
+count: false
+
+- Esta apresentação faz parte de um trabalho mais amplo intitulado: _"Inteligência Artificial Reprodutível: Redes Bayesianas"_
+--
+count: false
+
+   - Criação de pacotes
+
+   - Gerenciamento de dependências
+  
+   - Versionamento
+
+--
+count:false
+
+- Estimular usuários de R a desenvolver seus próprios pacotes, compartilhá-los
+em repositórios na internet e/ou submetê-los ao CRAN. Contribuindo para a comunidade
+de usuários e desenvoledores de R.
+
+--
+count:false
+
+- Tutorial: Do zero ao Github
+
+---
+
+class:header_background
+
+##Questões importantes
+
+--
+count:false
+
+- Por quê criar pacotes?
+--
+count:false
+
+  - Os pacotes são as unidades fundamentais do código R reproduzível.
+  
+  - Economizar tempo
+  
+  - Compartilhar código facilmente
+  
+---
+
+class:header_background
+
+##Questões importantes
+
+- Por quê gerenciar dependências?
+--
+count:false
+
+   - Criar ambientes reproduzíveis para cada projeto tornando-os:
+    
+     - Isolados
+    
+     - Portáteis
+
+     - Reprodutíveis
+     
+---
+
+class:header_background
+
+##Questões importantes
+
+- Por quê versionar?
+--
+count:false
+  
+  - Guardar o histórico de alterações
+  
+  - Especialmente importante em trabalhos colaborativos [Veja mais aqui]("https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#51")
+  
+---
+
+layout: true
+
+# 2.Tutorial
+
+---
+
+class:header_background
+
+## Pré requisitos
+
+--
+count:false
+
+- [R](https://www.r-project.org/)
+  
+- [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools40.html)
+
+- [RStudio](https://www.rstudio.com/)
+
+- [Git](https://git-scm.com/)
+
+- Criar conta no [Github](https://github.com/)
+
+- devtools
+
+- knitr
+
+- rmarkdown
+
+- renv
+
+
+```r
+install.packages(c("devtools", "knitr", "rmarkdown", "renv")) # devtools instala ainda os pacotes usethis e roxygen2
+```
+
+---
+
+class: header_background
+
+## Fluxo de trabalho
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+--
+count:false
+&lt;img src="imagens/workflow.jpg";&gt;
+
+---
+
+class:header_background
+
+## Passo a passo - Criar pacote
+--
+count:false
+.pull-left[
+- Iniciar o Rstudio
+
+- Criar estrutura mínima do pacote
+  
+  ```r
+  # No console
+  
+  usethis::create_package("caminho do pacote")
+  ```
+  - *.gitignore*
+
+  - *.Rbuildignore*
+
+  - *DESCRIPTION*
+
+  - *NAMESPACE*
+  
+  - */R*]
+
+.pull-right[
+&lt;center&gt;&lt;img src="imagens/arquivos.jpg" height="300px";&gt;&lt;/center&gt;
+]
+
+---
+
+class:header_background
+
+## Passo a passo - Editar
+--
+count:false
+
+- Arquivo DESCRIPTION
+
+&lt;center&gt;&lt;img src="imagens/description.jpg" height="300px";&gt;&lt;/center&gt;
+
+--
+count:false
+
+- Incluir licença
+
+```r
+usethis::use_mit_license() # Licensa MIT
+```
+
+---
+
+class:header_background
+
+## Passo a passo - Editar
+
+- Adicionar funções
+
+
+```r
+# Cria e abre o arquivo /R/função.R
+
+usethis::use_r("função")
+```
+--
+count:false
+
+- Editar função.R
+--
+count:false
+
+  - Chamar funções explicitamente
+--
+count:false
+  
+  - Caso função.R utilize funções de outros pacotes
+  
+
+```r
+usethis::use_package("outra função") # Adiciona Imports: "outra função" ao aquivo DESCRIPTION
+```
+--
+count:false
+- Carregar função.R para verificar funcionamento
+
+
+```r
+devtools::load_all() #ou o atalho &lt;ctrl + shift + l&gt;
+```
+
+---
+
+class:header_background
+
+## Passo a passo - Editar
+
+- Criar estrutura mínima de documentação
+--
+count:false
+
+  - Na barra de menu acessar *Code*&gt;*Insert Roxygen Skeleton* ou o atalho *ctrl + shiht +alt + r*
+--
+count:false
+  
+  - Preencher título e campos @
+  
+&lt;center&gt;&lt;img src="imagens/doc_esqueleto.jpg" height="300px";&gt;&lt;/center&gt;
+
+---
+
+class:header_background
+
+## Passo a passo - Editar
+
+- Gerar documentação
+  
+  ```r
+  devtools::documment() # ou o atalho &lt;ctrl + shift + d&gt;
+  ```
+  - */man*
+  
+  - */man/função.Rd*
+--
+count:false
+
+- Checar pacote em busca de erros
+
+
+```r
+devtools::check() # ou o atalho &lt;ctrl + shift + l&gt;
+
+0 errors √ | 0 warnings √ | 0 notes √ # Retorno esperado
+```
+
+---
+
+class:header_background
+
+## Passo a passo - Editar
+
+### Adicionar *vignettes*
+
+*"Uma vignette é um guia de formato longo para o seu pacote (...) pode descrever o problema que seu pacote foi projetado para resolver e, em seguida, mostrar ao leitor como resolvê-lo"* (Wickham e Bryan)
+
+
+```r
+browseVignettes() # Para vizualizar todas as vignettes instaladas
+```
+--
+count:false
+  - Criar *vignette*
+    
+    ```r
+    usethis::use_vigntte()
+    ```
+    - */vignette*
+  
+    - */vignette/função.Rmd*
+    
+    - Modifica DESCRIPTION
+--
+count:false
+        - *Suggests: knitr, rmarkdown* e *VignetteBuilder: knitr, rmarkdown*
+
+---
+
+class:header_background
+
+## Passo a passo - Editar
+
+Arquivo *função.Rmd*
+
+&lt;center&gt;&lt;img src="imagens/vignettermd.jpg" height="290px";&gt;&lt;/center&gt;
+--
+count:false
+
+- *Crtl + Shift + k* para *knit* e visualizar vignette
+--
+count:false
+
+- Executar *install* para instalar o pacote
+
+
+```r
+devtools::install(build = TRUE, build_vignettes = TRUE) # Instalar pacote, criar arquivo e gerar vignette
+```
+
+---
+
+class:header_background
+
+## Passo a passo - Editar
+
+Help!
+
+
+```r
+help(package = "nome do pacote")
+```
+.pull-left[
+&lt;center&gt;&lt;img src="imagens/help.jpg" height="390px";&gt;&lt;/center&gt;
+]
+.pull-rigth[
+&lt;center&gt;&lt;img src="imagens/help2.jpg" height="390px";&gt;&lt;/center&gt;
+]
+
+---
+
+class:header_background
+
+## Passo a passo - Gerenciar dependências
+--
+count:false
+
+- Iniciar biblioteca local
+  
+  ```r
+  renv::init() # Reconhece as depedências utilizadas e cria o arquivo renv.lock
+  ```
+--
+count:false
+  - De maneira semelhante, utiliza-se renv::snapshot() quando já existe uma biblioteca local
+  
+  ```r
+  renv::snapshot() # Reconhece novas depedências utilizadas e adiciona ao arquivo renv.lock
+  ```
+--
+count:false
+  - Já de maneira oposta, renv::load() é utilizado para _carregar_ um estado anterior salvo em renv.lock
+  
+  ```r
+  renv::load() # Carrega dependências listadas no arquivo renv.lock
+  ```
+  
+---
+
+class:header_background
+
+## Passo a passo - Versionamento (Git + Github)
+--
+count:false
+
+- Configurar o Git
+--
+count:false
+
+
+```r
+# Apresentar-se ao Git (Essa etapa pode ser feita apenas uma vez)
+
+usethis::use_git_config(user.name = "nome do usuário", user.email = "contatol@email.com")
+```
+--
+count:false
+
+```r
+# Gerar token
+
+usethis::create_github_token()
+```
+--
+count:false
+
+```r
+# Armazenar token
+
+gitcreds::gitcreds_set()
+
+# Aqui, reiniciar o R (ctrl + shift + f10)
+```
+--
+count:false
+
+```r
+# Checar se configuração funcionou
+
+usethis::usethis::git_sitrep()
+```
+
+---
+
+class:header_background
+
+## Passo a passo - Versionamento (Git + Github)
+
+Resultado do teste de configuração do Git
+
+&lt;center&gt;&lt;img src="imagens/configgitok.jpg" height="450px";&gt;&lt;/center&gt;
+
+---
+
+class:header_background
+
+## Passo a passo - Versionamento (Git + Github)
+
+- Inicializar repositório
+
+```r
+usethis::use_git("Primeiro commit") # Cria repositório e realiza o commit inicial
+```
+--
+count:false
+
+- Enviar pacote para o Github
+
+
+```r
+usethis::use_github()
+```
+--
+count:false
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;center&gt;&lt;h2&gt;Seu pacote está online!&lt;/h2&gt;&lt;/center&gt;
+
+---
+
+class:header_background
+
+## Passo a passo - Versionamento (Git + Github)
+
+.pull-left[
+- Cliente Git do Rstudio
+
+  - Stage
+  
+  - Commit
+  
+  - Push
+]
+
+.pull-right[
+&lt;center&gt;&lt;img src="imagens/clientegit.jpg" height="225";&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="imagens/clientegit2.jpg" height="225";&gt;&lt;/center&gt;
+
+]
+
+---
+
+class:header_background
+
+## Passo a passo - Versionamento (Git + Github)
+
+### Observações
+--
+count:false
+
+- Sobre criação de pacote
+--
+count:false
+
+  - Para clonar um projeto do Github
+
+
+```r
+usethis::create_from_github("caminho Github", destdir = "caminho pasta", fork = TRUE)
+```
+--
+count:false
+
+- Sobre instalação de pacotes do Gibhub
+--
+count:false
+
+  - Para instalar o pacote do Github
+
+
+```r
+devtools::install_github("caminho repositório", build_vignettes = TRUE) # Instalar e criar vignettes
+```
+--
+count:false
+
+- Sobre desenvolvimento colaborativo utilizando Gibhub [clique aqui]("https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#51")
+
+---
+
+layout: true
+
+# 3.Conclusão
+
+---
+
+class:header_background
+
+## Considerações finais
+
+Embora o esforço para criar pacotes, gerenciar suas dependências e versioná-los
+possa parecer considerável, analisadas as etapas do tutorial apresentado é possível
+dizer que boa parte desse esforço pode já fazer parte da rotina de trabalho de muitos usuários de R.
+
+Pacotes são *"(...) unidades fundamentais do código R reproduzível (...) incluem funções R reutilizáveis, a documentação que descreve como usá-las e dados de exemplo".* Dessa maneira, como é corrente o uso de funções nos scripts, principalmente para evitar repetições demasiadas -e conseguente confusão- dentro do código, ao mesmo tempo em que desenvolvedores mais "esquecidos" são generosos nas observações e anotações dentro seus scripts; não é exagero dizer que boa parte do trabalho para o desenvolvimento de pacotes já  está embutido -em maior ou menor medida- em projetos de usuários da comunidade.
+
+Quanto ao gerenciamento de dependências e o versionamento, com rotinas simples e poucas linhas de comando
+é possível ter um pacote que sempre vai funcionar, entregando o resultado esperado, independente de atualizações na biblioteca do R; da mesma maneira configurar um repositório online, para além de um backup com controle de versão ou disponibilização de uma nova ferramenta para a comunidade, pode ser uma ferramenta muito útil para o desenvolvimento colaborativo.
+
+---
+
+layout: true
+
+# 4.Referências
+
+---
+
+class:header_background
+
+1. [Slides Curso de pacotes (curso-r)](https://curso-r.github.io/main-pacotes/slides/index.html#1)
+
+1. [R packages by Hadley Wickham and Jenny Bryan](https://r-pkgs.org/index.html)
+
+1. [devtools RDocumentation](https://cran.r-project.org/web/packages/devtools/readme/README.html)
+
+1. [roxygen2: In-Line Documentation for R](https://cran.r-project.org/web/packages/roxygen2/)
+
+1. [Introdução à utilização do Git e GitHub no RStudio]("https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#1)
+
+1. [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html)
+
+1. [renv: Project Environments for R](https://www.rstudio.com/blog/renv-project-environments-for-r/)
+
+1. [Kevin Ushey | renv: Project Environments for R | RStudio (2020)](https://www.youtube.com/watch?v=yjlEbIDevOs)
+
+---
+
+layout: false
+class: center, middle
+
+# Grato pela atenção!
+
+Contato: gilsonll.contato@gmail.com
+
+Slides created via the R packages:
+
+[**xaringan**](https://github.com/yihui/xaringan) &amp;
+[**xaringanthemer**](https://github.com/gadenbuie/xaringanthemer)
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%/%total%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
