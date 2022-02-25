@@ -114,7 +114,7 @@ class:header_background
 --
 count:false
 
-- Por quê criar pacotes?
+- Por que criar pacotes?
 --
 count:false
 
@@ -130,7 +130,7 @@ class:header_background
 
 ##Questões importantes
 
-- Por quê gerenciar dependências?
+- Por que gerenciar dependências?
 --
 count:false
 
@@ -148,7 +148,7 @@ class:header_background
 
 ##Questões importantes
 
-- Por quê versionar?
+- Por que versionar?
 --
 count:false
   
