@@ -154,7 +154,7 @@ count:false
   
   - Guardar o histórico de alterações
   
-  - Especialmente importante em trabalhos colaborativos [Veja mais aqui]("https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#51")
+  - Especialmente importante em trabalhos colaborativos [Veja mais aqui](https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#51)
   
 ---
 
@@ -253,7 +253,7 @@ count:false
 
 - Incluir licença
 ```{r eval=FALSE}
-usethis::use_mit_license() # Licensa MIT
+usethis::use_mit_license() # Licença MIT
 
 ```
 
@@ -587,7 +587,7 @@ devtools::install_github("caminho repositório", build_vignettes = TRUE) # Insta
 --
 count:false
 
-- Sobre desenvolvimento colaborativo utilizando Gibhub [clique aqui]("https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#51")
+- Sobre desenvolvimento colaborativo utilizando Gibhub [clique aqui](https://beatrizmilz.github.io/slidesR/git_rstudio/11-2021-ENCE.html#51)
 
 ---
 
